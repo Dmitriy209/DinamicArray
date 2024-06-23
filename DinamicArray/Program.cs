@@ -9,9 +9,8 @@ namespace DinamicArray
             const string ButtonSum = "sum";
             const string ButtonExit = "exit";
 
-            int[] numbers = new int[1];
-
-            int sum = 0;
+            int[] numbers = new int[0];
+            int[] tempNumbers = new int[numbers.Length + 1];
 
             bool isEndProgramm = false;
 
@@ -21,9 +20,10 @@ namespace DinamicArray
                 $"Введите {ButtonExit}, чтобы выйти из программы.";
 
             Console.WriteLine("Введите первое число:");
-            numbers[0] = Convert.ToInt32(Console.ReadLine());
+            tempNumbers[tempNumbers.Length - 1] = Convert.ToInt32(Console.ReadLine());
+            numbers = tempNumbers;
 
-            while (isEndProgramm != true)
+            while (isEndProgramm == false)
             {
                 Console.WriteLine("Исходный массив:");
 
@@ -40,7 +40,7 @@ namespace DinamicArray
                     case ButtonSum:
                         Console.Clear();
 
-                        sum = 0;
+                        int sum = 0;
 
                         foreach (int number in numbers)
                         {
@@ -57,15 +57,15 @@ namespace DinamicArray
                     default:
                         Console.Clear();
 
-                        int[] tempArray = new int[numbers.Length + 1];
+                        tempNumbers = new int[numbers.Length + 1];
 
                         for (int i = 0; i < numbers.Length; i++)
                         {
-                            tempArray[i] = numbers[i];
+                            tempNumbers[i] = numbers[i];
                         }
 
-                        tempArray[tempArray.Length - 1] = Convert.ToInt32(userInput);
-                        numbers = tempArray;
+                        tempNumbers[tempNumbers.Length - 1] = Convert.ToInt32(userInput);
+                        numbers = tempNumbers;
                         break;
                 }
             }
